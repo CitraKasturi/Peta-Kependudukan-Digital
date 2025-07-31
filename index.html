@@ -38,8 +38,9 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="js/leaflet-measure.js"></script>
-        <script src="data/JumlahPenduduk_2.js"></script>
-        <script src="data/Usia_3.js"></script>
+        <script src="data/Petung_2.js"></script>
+        <script src="data/JumlahPenduduk_3.js"></script>
+        <script src="data/Usia_4.js"></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -156,7 +157,60 @@
             maxNativeZoom: 18
         });
         layer_GoogleSatellite_1;
-        function pop_JumlahPenduduk_2(feature, layer) {
+        function pop_Petung_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (var i in e.target._eventParents) {
+                        if (typeof e.target._eventParents[i].resetStyle === 'function') {
+                            e.target._eventParents[i].resetStyle(e.target);
+                        }
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DUSUN'] !== null ? autolinker.link(String(feature.properties['DUSUN']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['JMLH_JIWA'] !== null ? autolinker.link(String(feature.properties['JMLH_JIWA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_Petung_2_0() {
+            return {
+                pane: 'pane_Petung_2',
+                opacity: 1,
+                color: 'rgba(244,199,65,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Petung_2');
+        map.getPane('pane_Petung_2').style.zIndex = 402;
+        map.getPane('pane_Petung_2').style['mix-blend-mode'] = 'normal';
+        var layer_Petung_2 = new L.geoJson(json_Petung_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Petung_2',
+            layerName: 'layer_Petung_2',
+            pane: 'pane_Petung_2',
+            onEachFeature: pop_Petung_2,
+            style: style_Petung_2_0,
+        });
+        bounds_group.addLayer(layer_Petung_2);
+        map.addLayer(layer_Petung_2);
+        function pop_JumlahPenduduk_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -216,9 +270,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_JumlahPenduduk_2_0() {
+        function style_JumlahPenduduk_3_0() {
             return {
-                pane: 'pane_JumlahPenduduk_2',
+                pane: 'pane_JumlahPenduduk_3',
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -231,21 +285,21 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_JumlahPenduduk_2');
-        map.getPane('pane_JumlahPenduduk_2').style.zIndex = 402;
-        map.getPane('pane_JumlahPenduduk_2').style['mix-blend-mode'] = 'normal';
-        var layer_JumlahPenduduk_2 = new L.geoJson(json_JumlahPenduduk_2, {
+        map.createPane('pane_JumlahPenduduk_3');
+        map.getPane('pane_JumlahPenduduk_3').style.zIndex = 403;
+        map.getPane('pane_JumlahPenduduk_3').style['mix-blend-mode'] = 'normal';
+        var layer_JumlahPenduduk_3 = new L.geoJson(json_JumlahPenduduk_3, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_JumlahPenduduk_2',
-            layerName: 'layer_JumlahPenduduk_2',
-            pane: 'pane_JumlahPenduduk_2',
-            onEachFeature: pop_JumlahPenduduk_2,
-            style: style_JumlahPenduduk_2_0,
+            dataVar: 'json_JumlahPenduduk_3',
+            layerName: 'layer_JumlahPenduduk_3',
+            pane: 'pane_JumlahPenduduk_3',
+            onEachFeature: pop_JumlahPenduduk_3,
+            style: style_JumlahPenduduk_3_0,
         });
-        bounds_group.addLayer(layer_JumlahPenduduk_2);
-        map.addLayer(layer_JumlahPenduduk_2);
-        function pop_Usia_3(feature, layer) {
+        bounds_group.addLayer(layer_JumlahPenduduk_3);
+        map.addLayer(layer_JumlahPenduduk_3);
+        function pop_Usia_4(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     for (var i in e.target._eventParents) {
@@ -301,7 +355,7 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        var pattern_Usia_3_0 = new L.StripePattern({
+        var pattern_Usia_4_0 = new L.StripePattern({
             weight: 0.3,
             spaceWeight: 2.0,
             color: '#000000',
@@ -309,19 +363,19 @@
             spaceOpacity: 0,
             angle: 225
         });
-        pattern_Usia_3_0.addTo(map);
-        function style_Usia_3_0() {
+        pattern_Usia_4_0.addTo(map);
+        function style_Usia_4_0() {
             return {
-                pane: 'pane_Usia_3',
+                pane: 'pane_Usia_4',
                 stroke: false,
                 fillOpacity: 1,
-                fillPattern: pattern_Usia_3_0,
+                fillPattern: pattern_Usia_4_0,
                 interactive: true,
             }
         }
-        function style_Usia_3_1() {
+        function style_Usia_4_1() {
             return {
-                pane: 'pane_Usia_3',
+                pane: 'pane_Usia_4',
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
@@ -332,20 +386,19 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_Usia_3');
-        map.getPane('pane_Usia_3').style.zIndex = 403;
-        map.getPane('pane_Usia_3').style['mix-blend-mode'] = 'normal';
-        var layer_Usia_3 = new L.geoJson.multiStyle(json_Usia_3, {
+        map.createPane('pane_Usia_4');
+        map.getPane('pane_Usia_4').style.zIndex = 404;
+        map.getPane('pane_Usia_4').style['mix-blend-mode'] = 'normal';
+        var layer_Usia_4 = new L.geoJson.multiStyle(json_Usia_4, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_Usia_3',
-            layerName: 'layer_Usia_3',
-            pane: 'pane_Usia_3',
-            onEachFeature: pop_Usia_3,
-            styles: [style_Usia_3_0,style_Usia_3_1,]
+            dataVar: 'json_Usia_4',
+            layerName: 'layer_Usia_4',
+            pane: 'pane_Usia_4',
+            onEachFeature: pop_Usia_4,
+            styles: [style_Usia_4_0,style_Usia_4_1,]
         });
-        bounds_group.addLayer(layer_Usia_3);
-        map.addLayer(layer_Usia_3);
+        bounds_group.addLayer(layer_Usia_4);
         const url = {"Nominatim": "https://nominatim.openstreetmap.org/search?format=geojson&addressdetails=1&",
         "BAN": "https://api-adresse.data.gouv.fr/search/?"}
         var photonControl = L.control.photon({
@@ -400,8 +453,9 @@
             }
         });
         var overlaysTree = [
-            {label: '<img src="legend/Usia_3.png" /> Usia', layer: layer_Usia_3},
-            {label: '<img src="legend/JumlahPenduduk_2.png" /> Jumlah Penduduk', layer: layer_JumlahPenduduk_2},
+            {label: '<img src="legend/Usia_4.png" /> Usia', layer: layer_Usia_4},
+            {label: '<img src="legend/JumlahPenduduk_3.png" /> Jumlah Penduduk', layer: layer_JumlahPenduduk_3},
+            {label: '<img src="legend/Petung_2.png" /> Petung', layer: layer_Petung_2},
             {label: "Google Satellite", layer: layer_GoogleSatellite_1, radioGroup: 'bm' },
             {label: "OpenStreetMap", layer: layer_OpenStreetMap_0, radioGroup: 'bm' },]
         var lay = L.control.layers.tree(null, overlaysTree,{
@@ -466,7 +520,7 @@
         });       
         setBounds();
         </script>
-			<script>
+					<script>
 async function fetchKependudukan() {
   const sheetID = '1ET8H1ncSsCNPH84tQojSLBpd9Cgl7MKkye_dhPkNI8E';
   const sheetName = 'Jumlah Kependudukan';
@@ -529,7 +583,6 @@ fetchKependudukan().then(sheetData => {
         Kepala Keluarga Laki-laki: ${data.KK_L}<br>
         Perempuan: ${data.Perempuan}<br>
         Laki-laki: ${data.Laki_Laki}<br>
-        Produktif: ${data.Produktif}<br>
         Total: ${data.Total}<br>
       `;
       layer.bindPopup(popup);
@@ -560,7 +613,5 @@ fetchUsia().then(sheetData => {
     }
   });
 });
-
-</script>
     </body>
 </html>
