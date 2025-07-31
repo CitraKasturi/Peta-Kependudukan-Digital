@@ -520,7 +520,7 @@
         });       
         setBounds();
         </script>
-					<script>
+		<script>
 async function fetchKependudukan() {
   const sheetID = '1ET8H1ncSsCNPH84tQojSLBpd9Cgl7MKkye_dhPkNI8E';
   const sheetName = 'Jumlah Kependudukan';
@@ -571,7 +571,7 @@ fetchKependudukan().then(sheetData => {
     dataPerRT[d.RT] = d;
   });
 
-  layer_JumlahPenduduk_2.eachLayer(layer => {
+  layer_JumlahPenduduk_3.eachLayer(layer => {
     const rt = layer.feature.properties.RT;
     const data = dataPerRT[rt];
 
@@ -596,7 +596,7 @@ fetchUsia().then(sheetData => {
     dataPerRT[d.RT] = d;
   });
 
-  layer_Usia_3.eachLayer(layer => {
+  layer_Usia_4.eachLayer(layer => {
     const rt = layer.feature.properties.RT;
     const data = dataPerRT[rt];
 
