@@ -572,10 +572,13 @@ fetchDataFromSheet().then(sheetData => {
     if (data) {
       const popup = `
         <b>RT ${rt}</b><br>
-        Total Penduduk: ${data.Total}<br>
+        Jumlah KK: ${data.Jumlah_KK}<br>
+		Kepala Keluarga Perempuan: ${data.KK_P}<br>
+		Kepala Keluarga Laki-laki: ${data.KK_L}<br>
+		Perempuan: ${data.Perempuan}<br>
+		Laki-laki: ${data.Laki_Laki}<br>
         Produktif: ${data.Produktif}<br>
-        Laki-laki: ${data.Laki_Laki}<br>
-        Perempuan: ${data.Perempuan}
+        Total: ${data.Total}<br>
       `;
       layer.bindPopup(popup);
     }
