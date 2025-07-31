@@ -467,7 +467,7 @@
         setBounds();
         </script>
 			<script>
-async function fetchJumlahKependudukan() {
+async function fetchJKependudukan() {
   const sheetID = '1ET8H1ncSsCNPH84tQojSLBpd9Cgl7MKkye_dhPkNI8E';
   const sheetName = 'Jumlah Kependudukan';
   const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
@@ -511,13 +511,13 @@ async function fetchUsia() {
   return data;
 }
 
-fetchJumlahKependudukan().then(sheetData => {
+fetchKependudukan().then(sheetData => {
   const dataPerRT = {};
   sheetData.forEach(d => {
     dataPerRT[d.RT] = d;
   });
 
-  layer_JumlahKependudukan_2.eachLayer(layer => {
+  layer_JumlahPenduduk_2.eachLayer(layer => {
     const rt = layer.feature.properties.RT;
     const data = dataPerRT[rt];
 
@@ -543,7 +543,7 @@ fetchUsia().then(sheetData => {
     dataPerRT[d.RT] = d;
   });
 
-  layer_StatusPenduduk_3.eachLayer(layer => {
+  layer_Usia_3.eachLayer(layer => {
     const rt = layer.feature.properties.RT;
     const data = dataPerRT[rt];
 
