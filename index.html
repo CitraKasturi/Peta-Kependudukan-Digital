@@ -504,7 +504,7 @@ async function fetchUsia() {
     Usia0_5: row.c[1]?.v,
     Usia6_17: row.c[2]?.v,
     Usia18_42: row.c[3]?.v,
-    Lebih dari 42: row.c[4]?.v,
+    Lebih_dari_42: row.c[4]?.v,
 	Produktif: row.c[5]?.v
   }));
 
@@ -553,7 +553,7 @@ fetchUsia().then(sheetData => {
         Umur 0–5: ${data.Usia0_5}<br>
         Umur 6–17: ${data.Usia6_17}<br>
         Umur 18–42: ${data.Usia18_42}<br>
-        Umur >42: ${data.Lebih dari 42}<br>
+        Umur >42: ${data.Lebih_dari_42}<br>
         Produktif: ${data.Produktif}
       `;
       layer.bindPopup(popup);
