@@ -585,7 +585,8 @@ fetchKependudukan().then(sheetData => {
         Laki-laki: ${data.Laki_Laki}<br>
         Total: ${data.Total}<br>
       `;
-      layer.bindPopup(popup);
+      layer.unbindPopup();
+	  layer.bindPopup(popup);
     }
   });
 });
@@ -609,7 +610,8 @@ fetchUsia().then(sheetData => {
         Umur >42: ${data.Lebih_dari_42}<br>
         Produktif: ${data.Produktif}
       `;
-      layer.bindPopup(popup);
+      layer.unbindPopup();
+	  layer.bindPopup(popup);
     }
   });
 });
